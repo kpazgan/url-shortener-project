@@ -36,14 +36,14 @@ export class UrlController {
 
   @Patch('url/:uid')
   update(
-    @Param('uid', UrlExistsPipe) uid: string,
+    @Param('uid', UrlExistsPipe) url: Url,
     @Body() updateUrlDto: UpdateUrlDto,
   ) {
-    return this.urlService.update(+uid, updateUrlDto);
+    return this.urlService.update(+url.id, updateUrlDto);
   }
 
   @Delete('url/:uid')
-  remove(@Param('uid', UrlExistsPipe) uid: string) {
-    return this.urlService.remove(+uid);
+  remove(@Param('uid', UrlExistsPipe) url: Url) {
+    return this.urlService.remove(+url.id);
   }
 }
