@@ -13,8 +13,10 @@ export class UrlService {
     private readonly uidService: UidService,
     private readonly databaseService: DatabaseService,
     private readonly configService: ConfigService,
-  ) {
-    this.host = this.configService.getOrThrow(`host`);
+  ) {}
+
+  async onModuleInit() {
+    this.host = this.configService.getOrThrow<string>(`host`);
   }
 
   async create(createUrlDto: CreateUrlDto) {

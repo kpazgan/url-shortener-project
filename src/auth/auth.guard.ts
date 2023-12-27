@@ -12,12 +12,13 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   private apiKey: string;
   constructor(private readonly configService: ConfigService) {
-    this.apiKey = this.configService.getOrThrow('apiKey');
+    this.apiKey = this.configService.getOrThrow<string>('apiKey');
   }
 
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
+    console.log(this.apiKey);
     const request = context.switchToHttp().getRequest();
     const key = this.extractApiKey(request);
     if (key !== this.apiKey) {
