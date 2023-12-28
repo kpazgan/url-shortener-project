@@ -30,7 +30,7 @@ export class UrlService {
     return url;
   }
 
-  async findAll({ page = 1, limit = 1, filter }: FilterUrlsDto) {
+  async findAll({ page = 1, limit = 10, filter }: FilterUrlsDto) {
     const skip = (page - 1) * limit;
     const whereClause = filter
       ? {
